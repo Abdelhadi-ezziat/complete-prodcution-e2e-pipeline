@@ -31,6 +31,18 @@ pipeline{
 
         }
 
+        stage("Build Application"){
+            steps {
+                sh "mvn clean install"
+            }
+        }
+
+        stage("Test Application"){
+            steps {
+                sh "mvn testl"
+            }
+        }
+
         // stage("Build Application"){
         //     steps {
         //         sh "mvn clean package"
