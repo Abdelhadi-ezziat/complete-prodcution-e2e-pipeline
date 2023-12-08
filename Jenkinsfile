@@ -64,20 +64,20 @@ pipeline{
             }
         }
 
-        stage("Build and push Docker image"){
-            steps {
-                script {
-                    docker.withRegistry('','dckr_pat_v_yu3zJ_F--OUDYL8tEMiIDfkk8') {
-                        docker_image = docker.build(IMAGE_NAME)
-                    }
+        // stage("Build and push Docker image"){
+        //     steps {
+        //         script {
+        //             docker.withRegistry('','dckr_pat_v_yu3zJ_F--OUDYL8tEMiIDfkk8') {
+        //                 docker_image = docker.build(IMAGE_NAME)
+        //             }
 
-                    docker.withRegistry('','dckr_pat_v_yu3zJ_F--OUDYL8tEMiIDfkk8') {
-                        docker_image.push("${IMAGE_TAG}")
-                        docker_image.push('latest')
-                    }
-                }
-            }
-        }
+        //             docker.withRegistry('','dckr_pat_v_yu3zJ_F--OUDYL8tEMiIDfkk8') {
+        //                 docker_image.push("${IMAGE_TAG}")
+        //                 docker_image.push('latest')
+        //             }
+        //         }
+        //     }
+        // }
 
 
         // stage("Quality Gate") {
