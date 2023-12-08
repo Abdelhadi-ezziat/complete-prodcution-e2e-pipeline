@@ -12,7 +12,7 @@ pipeline{
         DOCKER_USER = "aecloud"
         // DOCKER_PASS = 'dockerhub'
         // DOCKER_CREDENTIALS_ID = 'dockerhub'
-        DOCKER_PASS = credentials('dockerhub')
+        DOCKER_PASS = credentials('dockerhub-cred')
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
         // JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
@@ -67,11 +67,11 @@ pipeline{
         stage("Build and push Docker image"){
             steps {
                 script {
-                    docker.withRegistry('','aecloud') {
+                    docker.withRegistry('','dockerhub-cred') {
                         docker_image = docker.build(IMAGE_NAME)
                     }
 
-                    docker.withRegistry('','aecloud') {
+                    docker.withRegistry('','dockerhub-cred') {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
                     }
